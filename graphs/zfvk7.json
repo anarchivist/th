@@ -1,0 +1,80 @@
+{
+    "properties": {
+        "name": "test harvester",
+        "id": "zfvk7",
+        "project": "test",
+        "environment": {
+            "type": "all",
+            "content": ""
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "ajax/Get_2kyx": {
+            "component": "ajax/Get",
+            "metadata": {
+                "label": "ajax/Get",
+                "x": 396,
+                "y": 144
+            }
+        },
+        "core/Output_ylq0": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "core/Output",
+                "x": 540,
+                "y": 144
+            }
+        },
+        "core/Kick_3np0b": {
+            "component": "core/Kick",
+            "metadata": {
+                "label": "core/Kick",
+                "x": 180,
+                "y": 144
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "core/Kick_3np0b",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ajax/Get_2kyx",
+                "port": "url"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ajax/Get_2kyx",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_ylq0",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "data": "",
+            "tgt": {
+                "process": "ajax/Get_2kyx",
+                "port": "url"
+            }
+        },
+        {
+            "data": "http://fedora.digitalcommonwealth.org/oaiprovider/?verb=ListRecords&set=commonwealth-oai&metadataPrefix=oai_dc",
+            "tgt": {
+                "process": "core/Kick_3np0b",
+                "port": "data"
+            }
+        }
+    ]
+}
